@@ -1,0 +1,40 @@
+.doubleButtonBox {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  border-radius: 10px;
+  width: 400px;
+  padding: 10px;
+  margin: 20px 0;
+  position: relative;
+  background-color: #ffffff;
+  box-shadow: 0 0 3px #9b9b9b;
+}
+
+.slider {
+  width: 50%;
+  background-color: #f0bd32;
+  height: 75%;
+  border-radius: 10px;
+  z-index: 0;
+  position: absolute;
+  transition: all .5s ease-in-out;
+}
+
+.slideRight {
+  left: 195px;
+}
+
+.slideLeft {
+  left: 5px;
+}
+
+.button {
+  width: 50%;
+  padding: 5px;
+  border: none;
+  cursor: pointer;
+  background: none;
+  border-radius: 10px;
+  z-index: 1;
+}

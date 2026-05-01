@@ -1,8 +1,25 @@
 .input {
   outline: none;
   border-radius: 10px;
-  border: 1px solid black;
-  padding: 10px;
+  border: none;
+  box-shadow: 0 0 3px #9b9b9b;
+  padding: 10px 10px 10px 35px;
+  width: 400px;
+}
+
+.inputBox {
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.inputIcon {
+  position: absolute;
+  left: 10px;
+}
+
+.input:focus {
+  outline: #ffca38 1px solid;
 }
 
 .inputContainer {

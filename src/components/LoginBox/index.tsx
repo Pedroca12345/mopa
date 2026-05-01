@@ -1,5 +1,7 @@
 import { Button } from "../Button";
+import { Checkbox } from "../Checkbox";
 import { Input } from "../Input";
+import { Lock, User } from "lucide-react";
 
 import styles from "./styles.module.css";
 
@@ -13,6 +15,7 @@ export function LoginBox() {
         labelFor="user"
         labelText="Usuário:"
         inputPlaceholder="Nome de Usuário"
+        Icon={User}
       />
 
       <Input 
@@ -21,11 +24,17 @@ export function LoginBox() {
         labelFor="password"
         labelText="Senha:"
         inputPlaceholder="Digite sua senha"
-      />
-      <Button 
-        buttonText="Login"
+        Icon={Lock}
       />
       </div>
+      <Checkbox 
+        checkID="keepConnected"
+        labelFor="keepConnected"
+        labelText="Lembar de mim"
+      />
+      <Button 
+        buttonText="Entrar"
+      />
     </div>
   )
 }

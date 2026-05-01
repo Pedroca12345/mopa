@@ -1,13 +1,23 @@
-import { Container } from "./components/Container";
+import { MainContainer } from "./components/MainContainer";
 import { LoginBox } from "./components/LoginBox";
+import { Logo } from "./components/Logo";
+import { Link } from "./components/Link";
+import { DoubleButton } from "./components/DoubleButton";
 
 function App() {
 
   return (
     <>
-      <Container>
+      
+      <MainContainer>
+        <Logo />
+        <DoubleButton 
+          rightText="Entrar"
+          leftText="Cadastrar"
+        />
         <LoginBox />
-      </Container>
+        <Link linkText="Esqueci minha senha"/>
+      </MainContainer>
     </>
   )
 }

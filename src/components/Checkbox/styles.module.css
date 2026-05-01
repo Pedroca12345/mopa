@@ -1,0 +1,29 @@
+.checkboxBox {
+  display: flex;
+  align-items: center;
+  margin: 0 5px 20px 0;
+  width: 390px;
+}
+
+input.checkbox[type="checkbox"] {
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border: 1px solid #ffca38;
+  border-radius: 3px;
+  cursor: pointer;
+  position: relative;
+  margin-right: 10px;
+}
+
+input.checkbox[type="checkbox"]:checked {
+  background-color: #ffca38;
+}
+
+input.checkbox[type="checkbox"]:checked::after {
+  content: "✔";
+  position: absolute;
+  top: 0;
+  left: 3px;
+  font-size: 14px;
+}
