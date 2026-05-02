@@ -16,9 +16,9 @@
   background-color: #f0bd32;
   height: 75%;
   border-radius: 10px;
-  z-index: 0;
   position: absolute;
   transition: all .5s ease-in-out;
+  z-index: 0;
 }
 
 .slideRight {
@@ -30,11 +30,14 @@
 }
 
 .button {
-  width: 50%;
+  text-align: center;
+  text-decoration: none;
+  color: #000;
+  width: 100%;
   padding: 5px;
-  border: none;
   cursor: pointer;
   background: none;
   border-radius: 10px;
   z-index: 1;
 }
+
