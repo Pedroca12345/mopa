@@ -11,34 +11,35 @@ export function LoginBox() {
   return (
     <div className={styles.loginBox}>
       <div className={styles.inputBox}>
-        <Input 
-        inputID="user"
-        inputType="text"
-        labelFor="user"
-        labelText="Usuário:"
-        inputPlaceholder="Nome de Usuário"
-        Icon={User}
-      />
+        <Input
+          inputID="user"
+          inputType="text"
+          labelFor="user"
+          labelText="Usuário:"
+          inputPlaceholder="Nome de Usuário"
+          Icon={User}
+        />
 
-      <Input 
-        inputID="password"
-        inputType="password"
-        labelFor="password"
-        labelText="Senha:"
-        inputPlaceholder="Digite sua senha"
-        Icon={Lock}
-      />
+        <Input
+          inputID="password"
+          inputType="password"
+          labelFor="password"
+          labelText="Senha:"
+          inputPlaceholder="Digite sua senha"
+          Icon={Lock}
+        />
       </div>
-      <Checkbox 
+      <Checkbox
         checkID="keepConnected"
         labelFor="keepConnected"
         labelText="Lembar de mim"
       />
-      <Button 
+      <Button
+        id="login"
         buttonText="Entrar"
       />
 
-      <Anchor AnchorText="Esqueci minha senha"/>
+      <Anchor AnchorText="Esqueci minha senha" />
     </div>
   )
 }

@@ -15,7 +15,7 @@ export function MainRouter ({ children }: MainRouterProps) {
         <Route
           path="/"
           element={<LoginBox />}
-        ></Route>
+        />
 
         <Route 
           path="/register"
