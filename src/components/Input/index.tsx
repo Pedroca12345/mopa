@@ -1,8 +1,8 @@
 import type { LucideIcon } from "lucide-react";
 import { useState, type SetStateAction } from "react";
+import type { UserModel } from "../../models/UserModel";
 
 import styles from "./styles.module.css";
-import type { UserModel } from "../../models/UserModel";
 
 type InputProps = {
   labelText: string;
@@ -10,13 +10,13 @@ type InputProps = {
   inputType: string;
   inputID: string;
   inputPlaceholder: string;
-  inputName: keyof UserModel
+  inputName: keyof UserModel;
   Icon: LucideIcon;
   inputValue: UserModel;
   setValue: React.Dispatch<SetStateAction<UserModel>>;
 } & React.ComponentProps<"input">;
 
-export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, inputName, inputValue, setValue }: InputProps) {
+export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, inputName, inputValue = { email: "", username:"", password: "" }, setValue }: InputProps) {
 
   const [focusColor, setFocusColor] = useState("#cfcfcf");
 
