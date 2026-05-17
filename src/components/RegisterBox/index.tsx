@@ -1,4 +1,4 @@
-// import axios from "axios";
+import axios from "axios";
 
 import { useState } from "react";
 import { Button } from "../Button";
@@ -56,15 +56,15 @@ export function RegisterBox() {
 
   async function handleClick() {
 
-    // const RegisterBody: UserModel = {
-    //   email: value.email,
-    //   username: value.username,
-    //   password: value.password
-    // }
+    const RegisterBody: UserModel = {
+      email: value.email,
+      username: value.username,
+      password: value.password
+    }
 
-    // const response = await axios.post<UserModel>("http://localhost:3000/register", RegisterBody);
+    const response = await axios.post<UserModel>("http://localhost:3000/register", RegisterBody);
 
-    console.log("Hello world");
+    console.log(response);
 
   }
 
