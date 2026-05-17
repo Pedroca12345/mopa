@@ -1,4 +1,4 @@
-import type { LucideIcon } from "lucide-react";
+import { Eye, EyeClosed, type LucideIcon } from "lucide-react";
 import { useState, type SetStateAction } from "react";
 import type { UserModel } from "../../models/UserModel";
 
@@ -12,21 +12,35 @@ type InputProps = {
   inputPlaceholder: string;
   inputName: keyof UserModel;
   Icon: LucideIcon;
+  PasswordIcon: LucideIcon | undefined;
   inputValue: UserModel;
   setValue: React.Dispatch<SetStateAction<UserModel>>;
 } & React.ComponentProps<"input">;
 
-export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, inputName, inputValue = { email: "", username:"", password: "" }, setValue }: InputProps) {
+export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, PasswordIcon = EyeClosed, inputName, inputValue = { email: "", username: "", password: "" }, setValue }: InputProps) {
 
   const [focusColor, setFocusColor] = useState("#cfcfcf");
-
-  function handleChange (event: React.ChangeEvent<HTMLInputElement>) {
+  const [inputTypeValue, setInputTypeValue] = useState(inputType);
+  const [EyeIcon, setEyeIcon] = useState<LucideIcon>(PasswordIcon);
+  
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
     setValue({
       ...inputValue,
-      [ name ]: value
+      [name]: value
     });
+  }
+
+  function handleIconClick () {
+    if(inputID === "password") {
+      setEyeIcon(Eye);
+      setInputTypeValue("text");
+    }
+    if(inputTypeValue === "text") {
+      setEyeIcon(EyeClosed);
+      setInputTypeValue("password");
+    }
   }
 
   function focus() {
@@ -45,18 +59,35 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
         <input
           className={styles.input}
           name={inputName}
-          type={inputType}
+          type={inputTypeValue}
           id={inputID}
           placeholder={inputPlaceholder}
           onFocus={focus} onBlur={blur}
           onChange={handleChange}
           value={inputValue[inputName]}
         />
-        <Icon
-          color={focusColor}
-          className={styles.inputIcon}
-          size={20}
-        />
+
+        {
+          inputID === "password" ?
+            <>
+              <Icon 
+                color={focusColor}
+                className={styles.inputIcon}
+                size={20}
+              />
+              <EyeIcon
+                className={styles.passwordIcon}
+                size={30}
+                onClick={handleIconClick}
+              />
+            </>
+            :
+            <Icon
+              color={focusColor}
+              className={styles.inputIcon}
+              size={20}
+            />
+        }
       </div>
     </div>
   )
