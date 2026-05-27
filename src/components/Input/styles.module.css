@@ -30,10 +30,6 @@
   color: #ffca38;
 }
 
-.input:focus {
-  outline: #ffca38 1px solid;
-}
-
 .inputContainer {
   display: flex;
   flex-direction: column;

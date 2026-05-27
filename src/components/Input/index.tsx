@@ -3,6 +3,7 @@ import { useState, type SetStateAction } from "react";
 import type { UserModel } from "../../models/UserModel";
 
 import styles from "./styles.module.css";
+import { Warning } from "../Warning";
 
 type InputProps = {
   labelText: string;
@@ -12,7 +13,7 @@ type InputProps = {
   inputPlaceholder: string;
   inputName: keyof UserModel;
   Icon: LucideIcon;
-  PasswordIcon: LucideIcon | undefined;
+  PasswordIcon?: LucideIcon | undefined;
   inputValue: UserModel;
   setValue: React.Dispatch<SetStateAction<UserModel>>;
 } & React.ComponentProps<"input">;
@@ -22,7 +23,7 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
   const [focusColor, setFocusColor] = useState("#cfcfcf");
   const [inputTypeValue, setInputTypeValue] = useState(inputType);
   const [EyeIcon, setEyeIcon] = useState<LucideIcon>(PasswordIcon);
-  
+
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
@@ -32,12 +33,12 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
     });
   }
 
-  function handleIconClick () {
-    if(inputID === "password") {
+  function handleIconClick() {
+    if (inputID === "password") {
       setEyeIcon(Eye);
       setInputTypeValue("text");
     }
-    if(inputTypeValue === "text") {
+    if (inputTypeValue === "text") {
       setEyeIcon(EyeClosed);
       setInputTypeValue("password");
     }
@@ -47,7 +48,12 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
     setFocusColor("#ffca38");
   }
 
-  function blur() {
+  function blur(event: React.ChangeEvent<HTMLInputElement>) {
+    if (!event.target.value) {
+      setFocusColor("#ff5b5b");
+      return;
+    }
+
     setFocusColor("#cfcfcf");
   }
 
@@ -65,17 +71,19 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
           onFocus={focus} onBlur={blur}
           onChange={handleChange}
           value={inputValue[inputName]}
+          style={{ outline: "2px solid " + focusColor }}
         />
 
         {
           inputID === "password" ?
             <>
-              <Icon 
+              <Icon
                 color={focusColor}
                 className={styles.inputIcon}
                 size={20}
               />
               <EyeIcon
+                color={focusColor}
                 className={styles.passwordIcon}
                 size={30}
                 onClick={handleIconClick}
@@ -89,6 +97,9 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
             />
         }
       </div>
+      {
+        focusColor === "#ff5b5b" ? <Warning warningText="Este campo não pode estar vazio!" /> : <></>
+      }
     </div>
   )
 }

@@ -64,7 +64,15 @@ export function RegisterBox() {
 
     const response = await axios.post<UserModel>("http://localhost:3000/register", RegisterBody);
 
-    console.log(response);
+    console.log(response.data);
+
+    if (response.status === 201) {
+      setValue({
+        email: "",
+        username: "",
+        password: ""
+      });
+    }
 
   }
 

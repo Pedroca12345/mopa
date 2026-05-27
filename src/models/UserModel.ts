@@ -1,5 +1,5 @@
 export type UserModel = {
-  email: string;
+  email?: string;
   username: string;
   password: string;
 }

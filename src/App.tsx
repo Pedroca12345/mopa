@@ -7,8 +7,6 @@ function App() {
 
   return (
     <>
-
-
       <MainContainer>
         <MainRouter>
           <Logo />
@@ -18,7 +16,6 @@ function App() {
           />
         </MainRouter>
       </MainContainer>
-
     </>
   )
 }
