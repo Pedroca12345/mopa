@@ -1,9 +1,10 @@
 import { Eye, EyeClosed, type LucideIcon } from "lucide-react";
-import React, { useState, type SetStateAction } from "react";
+import React, { useState } from "react";
 import type { UserModel } from "../../models/UserModel";
+import { Warning } from "../Warning";
+import { useUserContext } from "../../contexts/UserContext/useUserContext";
 
 import styles from "./styles.module.css";
-import { Warning } from "../Warning";
 
 type InputProps = {
   labelText: string;
@@ -14,11 +15,11 @@ type InputProps = {
   inputName: keyof UserModel;
   Icon: LucideIcon;
   PasswordIcon?: LucideIcon | undefined;
-  inputValue: UserModel;
-  setValue: React.Dispatch<SetStateAction<UserModel>>;
 } & React.ComponentProps<"input">;
 
-export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, PasswordIcon = EyeClosed, inputName, inputValue = { email: "", username: "", password: "" }, setValue }: InputProps) {
+export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, PasswordIcon = EyeClosed, inputName }: InputProps) {
+
+  const { state, setState } = useUserContext();
 
   const [focusColor, setFocusColor] = useState("#cfcfcf");
   const [inputTypeValue, setInputTypeValue] = useState(inputType);
@@ -29,18 +30,18 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
 
     setFocusColor("#ffca38");
 
-    setValue({
-      ...inputValue,
+    setState({
+      ...state,
       [name]: value
     });
   }
 
   function handleIconClick() {
-    if (!inputValue.password) return 
+    if (!state.password) return
     if (inputID === "password") {
-        setEyeIcon(Eye);
-        setInputTypeValue("text");
-      }
+      setEyeIcon(Eye);
+      setInputTypeValue("text");
+    }
     if (inputTypeValue === "text") {
       setEyeIcon(EyeClosed);
       setInputTypeValue("password");
@@ -77,7 +78,7 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
           placeholder={inputPlaceholder}
           onFocus={focus} onBlur={blur}
           onChange={handleChange}
-          value={inputValue[inputName]}
+          value={state[inputName]}
           style={{ outline: "2px solid " + focusColor }}
         />
 

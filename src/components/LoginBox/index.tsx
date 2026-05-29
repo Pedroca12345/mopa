@@ -2,25 +2,20 @@ import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
 import { Input } from "../Input";
 import { Lock, User } from "lucide-react";
-import { useState } from "react";
+import { useUserContext } from "../../contexts/UserContext/useUserContext";
 import type { UserModel } from "../../models/UserModel";
 
 import axios from "axios";
 import styles from "./styles.module.css";
 
-const initialValue: UserModel = {
-  username: "",
-  password: "",
-}
-
 export function LoginBox() {
 
-  const [value, setValue] = useState(initialValue);
+  const {state} = useUserContext();
 
   async function handleClick () {
     const loginBody: UserModel = {
-      username: value.username,
-      password: value.password
+      username: state.username,
+      password: state.password
     }
 
     const response = await axios.post<UserModel>("http://localhost:3000/login", loginBody);
@@ -39,8 +34,7 @@ export function LoginBox() {
           inputPlaceholder="Nome de Usuário"
           Icon={User}
           inputName={"username"}
-          inputValue={value}
-          setValue={setValue}
+          value={state.username}
         />
 
         <Input
@@ -51,8 +45,7 @@ export function LoginBox() {
           inputPlaceholder="Digite sua senha"
           Icon={Lock}
           inputName="password"
-          inputValue={value}
-          setValue={setValue}
+          value={state.password}
         />
       </div>
       <Checkbox

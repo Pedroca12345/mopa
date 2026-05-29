@@ -1,16 +1,18 @@
 import { MainContainer } from "./components/MainContainer";
 import { Logo } from "./components/Logo";
 import { MainRouter } from "./routers/MainRouter";
+import { UserContextProvider } from "./providers/UserContextProvider";
 
 function App() {
-
   return (
     <>
-      <MainContainer>
-        <MainRouter>
-          <Logo />
-        </MainRouter>
-      </MainContainer>
+      <UserContextProvider>
+        <MainContainer>
+          <MainRouter>
+            <Logo />
+          </MainRouter>
+        </MainContainer>
+      </UserContextProvider>
     </>
   )
 }
