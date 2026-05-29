@@ -2,11 +2,10 @@ import { Button } from "../Button";
 import { Checkbox } from "../Checkbox";
 import { Input } from "../Input";
 import { Lock, User } from "lucide-react";
-import { Anchor } from "../Anchor";
 import { useState } from "react";
 import type { UserModel } from "../../models/UserModel";
-import axios from "axios";
 
+import axios from "axios";
 import styles from "./styles.module.css";
 
 const initialValue: UserModel = {
@@ -66,8 +65,6 @@ export function LoginBox() {
         buttonText="Entrar"
         onClick={handleClick}
       />
-
-      <Anchor AnchorText="Esqueci minha senha" />
     </div>
   )
 }

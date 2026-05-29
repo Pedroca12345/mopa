@@ -1,5 +1,5 @@
 import { Eye, EyeClosed, type LucideIcon } from "lucide-react";
-import { useState, type SetStateAction } from "react";
+import React, { useState, type SetStateAction } from "react";
 import type { UserModel } from "../../models/UserModel";
 
 import styles from "./styles.module.css";
@@ -27,6 +27,8 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
   function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     const { name, value } = event.target;
 
+    setFocusColor("#ffca38");
+
     setValue({
       ...inputValue,
       [name]: value
@@ -34,10 +36,11 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
   }
 
   function handleIconClick() {
+    if (!inputValue.password) return 
     if (inputID === "password") {
-      setEyeIcon(Eye);
-      setInputTypeValue("text");
-    }
+        setEyeIcon(Eye);
+        setInputTypeValue("text");
+      }
     if (inputTypeValue === "text") {
       setEyeIcon(EyeClosed);
       setInputTypeValue("password");
@@ -45,6 +48,10 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
   }
 
   function focus() {
+    if (focusColor === "#ff5b5b") {
+      setFocusColor("#ff5b5b");
+      return;
+    }
     setFocusColor("#ffca38");
   }
 

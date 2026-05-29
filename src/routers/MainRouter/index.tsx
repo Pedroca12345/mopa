@@ -1,9 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { LoginBox } from "../../components/LoginBox";
-import { RegisterBox } from "../../components/RegisterBox";
 
 type MainRouterProps= {
-  children: React.ReactNode
+  children: React.ReactNode;
 }
 
 export function MainRouter ({ children }: MainRouterProps) {
@@ -11,19 +10,11 @@ export function MainRouter ({ children }: MainRouterProps) {
     <BrowserRouter>
       {children}
       <Routes>
-
         <Route
-          path="/"
+          path="/login"
           element={<LoginBox />}
         />
-
-        <Route 
-          path="/register"
-          element={<RegisterBox />}
-        />
-
       </Routes>
-      
     </BrowserRouter>
   )
 }
