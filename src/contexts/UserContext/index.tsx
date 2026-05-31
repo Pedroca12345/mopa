@@ -8,7 +8,8 @@ export type UserContextProps = {
 
 const initialState: UserModel = {
   password: "",
-  username: ""
+  username: "",
+  token: ""
 }
 
 export const UserContext = createContext<UserContextProps>({

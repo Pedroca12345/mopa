@@ -1,18 +1,19 @@
 import { BrowserRouter, Route, Routes } from "react-router";
 import { LoginBox } from "../../components/LoginBox";
+import { Home } from "../../components/Home";
 
-type MainRouterProps= {
-  children: React.ReactNode;
-}
-
-export function MainRouter ({ children }: MainRouterProps) {
+export function MainRouter () {
   return (
     <BrowserRouter>
-      {children}
       <Routes>
         <Route
-          path="/login"
+          path="/"
           element={<LoginBox />}
+        />
+
+        <Route 
+          path="/home"
+          element={<Home />}
         />
       </Routes>
     </BrowserRouter>
