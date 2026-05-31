@@ -1,0 +1,40 @@
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+  flex-direction: column;
+  height: 100vh;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  background-color: #ffca38;
+}
+
+.nav {
+  width: 100%;
+}
+
+.menu {
+  list-style: none;
+  width: 100%;
+}
+
+.menu li {
+  display: flex;
+  gap: 5px;
+  margin-bottom: 10px;
+  padding: 15px;
+  cursor: pointer;
+  transition: background ease-in-out .2s;
+}
+
+.menu li:hover {
+  background: rgba(0, 0, 0, .1);
+}
+
+.menu a {
+  text-decoration: none;
+  
+  color: black;
+}

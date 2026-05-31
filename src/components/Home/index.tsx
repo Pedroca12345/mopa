@@ -1,8 +1,9 @@
 import { useEffect } from "react";
+import { MainMenu } from "../MainMenu";
 
 import axios from "axios";
-import styles from "./styles.module.css";
-import { Logo } from "../Logo";
+
+
 
 export function Home() {
 
@@ -30,8 +31,6 @@ export function Home() {
   });
 
   return (
-    <header className={styles.header}>
-      <Logo />
-    </header>
+    <MainMenu />
   )
 }

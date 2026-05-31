@@ -1,12 +1,18 @@
 import styles from "./styles.module.css";
 
-export function Logo () {
+type LogoProps = {
+  size: "large" | "normal" | "small";
+  line: "true" | "false";
+}
+
+export function Logo ({ size, line }: LogoProps) {
+
   return (
     <>
       <div className={styles.logoContainer}>
-        <div className={styles.logoLine}></div>
-        <h1 className={styles.logo}>Loc It!</h1>
-        <div className={styles.logoLine}></div>
+        {line === "true" ? <div className={styles.logoLine}></div> : <></>}
+        <h1 className={`${styles.logo} ${styles[size]}`}>M.O.P.A</h1>
+        {line === "true" ? <div className={styles.logoLine}></div> : <></>}
       </div>
     </>
   )

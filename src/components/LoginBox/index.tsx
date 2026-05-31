@@ -30,7 +30,10 @@ export function LoginBox() {
 
   return (
     <>
-      <Logo />
+      <Logo 
+        size="large"
+        line="true"
+      />
       <div className={styles.loginBox}>
         <div className={styles.inputBox}>
 
