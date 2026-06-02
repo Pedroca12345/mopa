@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { MainMenu } from "../MainMenu";
 
 import axios from "axios";
+import { FileInput } from "../FileInput";
 
 
 
@@ -31,6 +32,9 @@ export function Home() {
   });
 
   return (
-    <MainMenu />
+    <>
+      <MainMenu />
+      <FileInput/>
+    </>
   )
 }
