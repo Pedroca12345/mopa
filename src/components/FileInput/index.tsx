@@ -1,14 +1,18 @@
-import { useState } from "react";
 import { type PartModel } from "../../models/PartModel";
+import { usePartContext } from "../../contexts/PartContext/usePartContext";
 
-import Papa  from "papaparse";
+import Papa from "papaparse";
+import axios from "axios";
 
 export function FileInput() {
 
-  const [parts, setParts] = useState<PartModel[]>([]);
+  const { setParts } = usePartContext();
 
   function handleFileUpload(event: React.ChangeEvent<HTMLInputElement>) {
     const target = event.target;
+
+    const token = localStorage.getItem("token");
+    console.log(token);
 
     if (!target.files || target.files.length === 0) return;
 
@@ -17,13 +21,36 @@ export function FileInput() {
     Papa.parse<PartModel>(file, {
       header: true,
       skipEmptyLines: true,
-      complete: (results) => {
-        setParts(results.data);
+      complete: async (results) => {
+        const parsedParts = results.data;
+
+        setParts(parsedParts);
+
+        for (const part of parsedParts) {
+          const response = await axios.post<PartModel>(
+            "http://localhost:3000/part",
+            {
+              description: part.description,
+              location: part.location,
+              partcode: part.partcode,
+              quantity: part.quantity
+            },
+            {
+              headers: {
+                Authorization: `Bearer ${token}`
+              }
+            });
+
+          console.log(response.data);
+        }
       }
     });
+
   }
 
   return (
-    <input type="file" onChange={handleFileUpload} />
+    <>
+      <input type="file" onChange={handleFileUpload} />
+    </>
   )
 }

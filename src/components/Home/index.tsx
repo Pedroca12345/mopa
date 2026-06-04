@@ -1,14 +1,15 @@
 import { useEffect } from "react";
 import { MainMenu } from "../MainMenu";
+import { FileInput } from "../FileInput";
+import { usePartContext } from "../../contexts/PartContext/usePartContext";
 
 import axios from "axios";
-import { FileInput } from "../FileInput";
-
-
 
 export function Home() {
 
   const token = localStorage.getItem("token");
+
+  const { parts } = usePartContext();
 
   async function fetchAPI() {
     const headers = {
@@ -30,11 +31,11 @@ export function Home() {
   useEffect(() => {
     fetchAPI();
   });
-
+  
   return (
     <>
       <MainMenu />
-      <FileInput/>
+      <FileInput />
     </>
   )
 }

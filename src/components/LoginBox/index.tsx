@@ -11,12 +11,12 @@ import styles from "./styles.module.css";
 
 export function LoginBox() {
 
-  const { state } = useUserContext();
+  const { user } = useUserContext();
 
   async function handleClick() {
     const loginBody: UserModel = {
-      username: state.username,
-      password: state.password,
+      username: user.username,
+      password: user.password,
       token: ""
     }
 
@@ -45,7 +45,7 @@ export function LoginBox() {
             inputPlaceholder="Nome de Usuário"
             Icon={User}
             inputName={"username"}
-            value={state.username}
+            
           />
 
           <Input
@@ -56,7 +56,7 @@ export function LoginBox() {
             inputPlaceholder="Digite sua senha"
             Icon={Lock}
             inputName="password"
-            value={state.password}
+            
           />
         </div>
         <Checkbox

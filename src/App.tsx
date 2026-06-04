@@ -1,14 +1,17 @@
 import { MainContainer } from "./components/MainContainer";
 import { MainRouter } from "./routers/MainRouter";
 import { UserContextProvider } from "./providers/UserContextProvider";
+import { PartContextProvider } from "./providers/PartContextProvider";
 
 function App() {
   return (
     <>
       <UserContextProvider>
-        <MainContainer>
-          <MainRouter />
-        </MainContainer>
+        <PartContextProvider>
+          <MainContainer>
+            <MainRouter />
+          </MainContainer>
+        </PartContextProvider>
       </UserContextProvider>
     </>
   )

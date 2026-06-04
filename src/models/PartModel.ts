@@ -1,5 +1,5 @@
 export type PartModel = {
-  partCode: string;
+  partcode: string;
   quantity: number;
   location: string;
   description: string;

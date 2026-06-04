@@ -8,14 +8,15 @@ type UserContextProviderProps = {
 
 const initialState: UserModel = {
   password: "",
-  username: ""
+  username: "",
+  token: ""
 }
 
 export function UserContextProvider({ children }: UserContextProviderProps) {
-  const [state, setState] = useState(initialState);
+  const [user, setUser] = useState(initialState);
 
   return (
-    <UserContext.Provider value={{state, setState}}>
+    <UserContext.Provider value={{user, setUser}}>
       {children}
     </UserContext.Provider>
   )

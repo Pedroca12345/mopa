@@ -19,7 +19,7 @@ type InputProps = {
 
 export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholder, Icon, PasswordIcon = EyeClosed, inputName }: InputProps) {
 
-  const { state, setState } = useUserContext();
+  const { user, setUser } = useUserContext();
 
   const [focusColor, setFocusColor] = useState("#cfcfcf");
   const [inputTypeValue, setInputTypeValue] = useState(inputType);
@@ -30,14 +30,14 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
 
     setFocusColor("#ffca38");
 
-    setState({
-      ...state,
+    setUser({
+      ...user,
       [name]: value
     });
   }
 
   function handleIconClick() {
-    if (!state.password) return
+    if (!user.password) return
     if (inputID === "password") {
       setEyeIcon(Eye);
       setInputTypeValue("text");
@@ -78,7 +78,7 @@ export function Input({ labelText, labelFor, inputType, inputID, inputPlaceholde
           placeholder={inputPlaceholder}
           onFocus={focus} onBlur={blur}
           onChange={handleChange}
-          value={state[inputName]}
+          value={user[inputName]}
           style={{ outline: "2px solid " + focusColor }}
         />
 
